@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Childcare Recommendation</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="static/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="static/parsley/parsley.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	<div class="bg-contact3" style="background-image: url('static/images/bg-01.jpg');">
+		<div class="container-contact3">
+			<div class="wrap-contact3">
+				<form id="recommendation-form" class="contact3-form validate-form" action="{{ url_for('recommend') }}" method="post">
+					<span class="contact3-form-title">
+						Childcare recommendation
+					</span>
+
+					<p style="text-align: center;">Please enter your requirements and we will find the most suitable childcares for you
+					(as well as their reviews!).
+					</p>
+					<br>
+
+					<div class="wrap-input3 validate-input">
+						<label for="child-birthdate">Child's birthdate</label>
+						<input id="child-birthdate" class="input3" type="date" name="child-birthdate"
+							   required="" data-parsley-daterangevalidation="">
+					</div>
+
+					<div class="wrap-input3 validate-input">
+						<label for="child-enrolment">Enrolment date</label>
+						<input id="child-enrolment" class="input3" type="date" name="child-enrolment"
+							   required="" data-parsley-daterangevalidation="">
+					</div>
+
+					<div id="div-study-level" class="wrap-input3 validate-input" style="display: none">
+						<label for="study-level">Study level</label>
+						<select class="selection-2" name="study-level" id="study-level">
+							<option value="Infant">Infant</option>
+							<option value="Playgroup">Playgroup</option>
+							<option value="Pre-Nursery">Pre-Nursery</option>
+							<option value="Nursery">Nursery</option>
+							<option value="Kindergarten 1">Kindergarten 1</option>
+							<option value="Kindergarten 2">Kindergarten 2</option>
+						</select>
+					</div>
+
+					<label for="service-type">Type of service</label>
+					<select class="selection-2" name="service-type" id="service-type">
+						<option value="Any">Any</option>
+						<option value="Full Day">Full Day</option>
+						<option value="Session 1">AM only</option>
+						<option value="Session 2">PM only</option>
+					</select>
+
+					<div class="wrap-input3 validate-input">
+						<label for="location">Ideal childcare location</label>
+						<input id="location" class="input3" type="text" name="location" placeholder="Postal code"
+							   data-parsley-type="number" data-parsley-length="[6, 7]" required="">
+						<span class="focus-input3"></span>
+					</div>
+
+					<label for="acceptable-distance">Acceptable distance from childcare</label>
+					<select class="selection-2" name="acceptable-distance" id="acceptable-distance">
+						<option value="Any">Any</option>
+						<option value="< 1km">< 1km</option>
+						<option value="< 2km">< 2km</option>
+						<option value="< 3km">< 3km</option>
+					</select>
+
+					<label for="fee-range">Fee range</label>
+					<select class="selection-2" name="fee-range" id="fee-range">
+						<option value="Any">Any</option>
+						<option value="Below SGD200">Below SGD200</option>
+						<option value="SGD200 - SGD500">SGD200 - SGD500</option>
+						<option value="SGD500 - SGD800">SGD500 - SGD800</option>
+						<option value="Above SGD800">Above SGD800</option>
+					</select>
+
+					<label for="citizenship-type">Child's type of citizenship</label>
+					<select class="selection-2" name="citizenship-type" id="citizenship-type">
+						<option value="SC">Singapore Citizen</option>
+						<option value="SPR">Singapore PR</option>
+						<option value="Others">Others</option>
+					</select>
+
+					<label for="second-language">Second language</label>
+					<select class="selection-2" name="second-language" id="second-language">
+						<option value="Any">Any</option>
+						<option value="Chinese">Chinese</option>
+						<option value="Malay">Malay</option>
+						<option value="Tamil">Tamil</option>
+					</select>
+
+					<label for="dietary-restrictions">Dietary restrictions</label>
+					<select class="selection-2" name="dietary-restrictions" id="dietary-restrictions">
+						<option value="Any">Any</option>
+						<option value="Halal">Halal</option>
+						<option value="Non-beef">Non-beef</option>
+						<option value="Vegetarian">Vegetarian</option>
+					</select>
+
+					<div class="container-contact3-form-btn">
+						<button type="submit" class="contact3-form-btn">
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="static/parsley/parsley.min.js"></script>
+	<script src="static/parsley/i18n/en.js"></script>
+	<script src="static/parsley/i18n/en.extra.js"></script>
+	<script src="static/vendor/select2/select2.min.js"></script>
+
+<!--===============================================================================================-->
+	<script src="static/vendor/bootstrap/js/popper.js"></script>
+	<script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script>
+		$('#recommendation-form').parsley();
+
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+
+		var today = new Date().toISOString().split('T')[0];
+		document.getElementsByName("child-birthdate")[0].setAttribute('max', today);
+		document.getElementsByName("child-enrolment")[0].setAttribute('min', today);
+
+	</script>
+<!--===============================================================================================-->
+	<script src="static/js/main.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+</body>
+</html>

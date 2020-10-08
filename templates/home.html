@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Favicon-->
+	<link rel="icon" type="image/png" href="static/images/icons/favicon.ico"/>
+    <title>Results</title>
+    <script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='moment.min.js') }}"></script>
+    <link rel="stylesheet" href="static/vendor/fontawesome-free-5.14.0-web/fontawesome-free-5.14.0-web/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='body.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='heading.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='datatables.min.css') }}">
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+
+</head>
+<body id="page-top">
+    <!-- Navigation Bar-->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav" style="height:25px">
+    </nav>
+
+    <!-- Childcare Selection Section-->
+    <section class="page-section" id="cc-selection">
+        <div class="container">
+            <!-- Questionnaire Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Questionnaire</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+
+            <form id="form-for-parsley" action="{{ url_for('update') }}" method="post">
+                <div style="margin: auto; width: 50%; padding: 10px;">
+                    <p style="margin: 0px"><label for="child-birthdate">Child's birthdate: </label>
+                        <input id="child-birthdate" name="child-birthdate" value="{{ child_birthdate }}" style="background-color: white; color: mediumturquoise;" readonly></p>
+                    <p style="margin: 0px"><label for="child-enrolment">Child's enrolment date: </label>
+                        <input id="child-enrolment" name="child-enrolment" value="{{ child_enrolment }}" style="background-color: white; color: mediumturquoise;" readonly></p>
+                    <p style="margin: 0px"><label for="child-citizenship">Child's citizenship: </label>
+                        <input id="child-citizenship" name="child-citizenship" value="{{ citizenship_type }}" style="background-color: white; color: mediumturquoise;" readonly></p>
+                    <p style="margin: 0px"><label for="study-level">Study level: </label>
+                        <input id="study-level" name="study-level" value="{{ study_level }}" style="background-color: white; color: mediumturquoise;" readonly></p>
+                    <p style="margin: 0px"><label for="service-type">Service type: </label>
+                        <input id="service-type" name="service-type" value="{{ service_type }}" style="background-color: white; color: mediumturquoise;" readonly></p>
+                    <p style="margin: 0px"><label for="location">Ideal childcare location: </label>
+                        <input id="location" name="location" value="{{ location }}" style="background-color: white; color: mediumturquoise;" readonly></p>
+                    <p style="margin: 0px"><label for="acceptable-distance">Acceptable distance from location: </label>
+                        <input id="acceptable-distance" name="acceptable-distance" value="{{ acceptable_distance }}" style="background-color: white; color: mediumturquoise;" readonly></p>
+                    <p style="margin: 0px"><label for="fee-range">Fee range: </label>
+                        <input id="fee-range" name="fee-range" value="{{ fee_range }}" style="background-color: white; color: mediumturquoise;" readonly></p>
+                    <p style="margin: 0px"><label for="second-language">Second language: </label>
+                        <input id="second-language" name="second-language" value="{{ second_language }}" style="background-color: white; color: mediumturquoise;" readonly></p>
+                    <p style="margin: 0px"><label for="dietary-restrictions">Dietary restrictions: </label>
+                        <input id="dietary-restrictions" name="dietary-restrictions" value="{{ dietary_restrictions }}" style="background-color: white; color: mediumturquoise;" readonly></p>
+                </div>
+
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Childcare Results Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Results</h2>
+
+                <div class="row">
+                    <p>If no Internet is detected, the distance indicated below will be a rough gauge. For instance,
+                    if you have indicated that childcare should be within 2km radius of specified location, all
+                    the childcares that are within 2km will be displayed and the distance indicated will be 2.
+                </div>
+
+                <!-- Childcare Results Table-->
+                <div class="row">
+                    <table id="relevant-results" class="ui celled table" style="width:100%;"></table>
+                </div>
+
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                </div>
+
+                <div class="row">
+                    <p>If you are interested in any of the following childcare centres, please rank them above and tap on
+                        the Submit button after completing the fields below. If a childcare was in a rank position before,
+                        and you gave another childcare the same rank today, today's childcare will replace the previous
+                        childcare in the same rank position. </p>
+                    <p> The childcare centres will contact you separately when a suitable vacancy arise. Please note
+                        that with submission, your contact details will be shared with the childcare centres. </p>
+                </div>
+
+                <div class="row">
+                    <input id="child-id" class="input3" type="text" name="child-id" style="background-color: mediumturquoise; color: black;"
+                           placeholder="Child's ID No." required="" >
+                </div>
+
+                <div class="row">
+                    <input id="contact-details" class="input3" type="text" name="contact-details" style="background-color: mediumturquoise; color: black;"
+                           placeholder="Contact number" required="" >
+                </div>
+
+                <div class="row">
+                    <button class="btn btn-primary" style="margin:auto;display:block;"
+                            type="submit" id="submit-data-button" value="submit-data">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+    <script src="static/parsley/parsley.min.js"></script>
+	<script src="static/parsley/i18n/en.js"></script>
+	<script src="static/parsley/i18n/en.extra.js"></script>
+    <script src="{{ url_for('static', filename='datatables.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='datetime-moment.js') }}"></script>
+    <script src="{{ url_for('static', filename='semantic.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='dataTables.semanticui.min.js') }}"></script>
+    <script src="static/vendor/select2/select2.min.js"></script>
+
+    <script type="text/javascript">
+      let jsonResult = {{ result|tojson|safe }};
+    </script>
+    <script src="static/js/home.js"></script>
+
+</body>
+</html>
