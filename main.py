@@ -12,8 +12,8 @@ app.secret_key = "thisismysecretkey"
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'MyNewPass'
+app.config['MYSQL_USER'] = 'iss-user'
+app.config['MYSQL_PASSWORD'] = 'iss-user'
 app.config['MYSQL_DB'] = 'cc_schema'
 
 mysql = MySQL(app)
@@ -214,17 +214,17 @@ def get_api(fee_range, location, distance, language, dietary_restrictions,
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    app.run(debug=True)
-    # print(get_api(fee_range="Any",
-    #               location="520101",
-    #               distance="< 1km",
-    #               language="Chinese",
-    #               dietary_restrictions="Any",
-    #               enrolment_date="2020-12-17",
-    #               # child_name="Serene",
-    #               child_birthdate="2017-12-17",
-    #               citizenship_type="SC",
-    #               # child_id="T12345678A",
-    #               service="Full Day"))
+    # app.run(debug=True)
+    print(get_api(fee_range="Any",
+                  location="520101",
+                  distance="< 1km",
+                  language="Chinese",
+                  dietary_restrictions="Any",
+                  enrolment_date="2020-12-17",
+                  # child_name="Serene",
+                  child_birthdate="2017-12-17",
+                  citizenship_type="SC",
+                  # child_id="T12345678A",
+                  service="Full Day"))
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
